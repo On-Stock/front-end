@@ -12,7 +12,16 @@ import Stars2 from '../assets/stars2.svg'
 import Stars1 from '../assets/stars1.svg'
 
 interface BestSellersProps {
-  setCartCount: React.Dispatch<React.SetStateAction<number>>
+  setCartCount: React.Dispatch<
+    React.SetStateAction<
+      {
+        id?: string | undefined
+        image: string
+        price: string
+        quantity?: number
+      }[]
+    >
+  >
 }
 
 export function BestSellers({ setCartCount }: BestSellersProps) {
@@ -23,6 +32,7 @@ export function BestSellers({ setCartCount }: BestSellersProps) {
       </h2>
       <div className="flex flex-row gap-20 mt-10 w-full justify-center">
         <ProductCard
+          id="1"
           image={C920}
           name="Webcam C922 Logitech"
           price="350.99"
@@ -31,6 +41,7 @@ export function BestSellers({ setCartCount }: BestSellersProps) {
         />
 
         <ProductCard
+          id="2"
           image={Michyper}
           name="QuadCast HyperX"
           price="860.00"
@@ -39,6 +50,7 @@ export function BestSellers({ setCartCount }: BestSellersProps) {
         />
 
         <ProductCard
+          id="3"
           image={Brio}
           name="Webcam BRIO Logitech"
           price="1050.00"

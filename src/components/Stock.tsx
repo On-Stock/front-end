@@ -12,7 +12,15 @@ import Stars2 from '../assets/stars2.svg'
 import Stars1 from '../assets/stars1.svg'
 
 interface StockProps {
-  setCartCount: React.Dispatch<React.SetStateAction<number>>
+  setCartCount: React.Dispatch<
+    React.SetStateAction<
+      {
+        id?: string | undefined
+        image: string
+        price: string
+      }[]
+    >
+  >
 }
 
 export function Stock({ setCartCount }: StockProps) {

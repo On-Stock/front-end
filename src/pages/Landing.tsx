@@ -8,7 +8,16 @@ import { About } from '../components/About'
 
 export interface ILandingProps {
   cartCount: number
-  setCartCount: React.Dispatch<React.SetStateAction<number>>
+  setCartCount: React.Dispatch<
+    React.SetStateAction<
+      {
+        id?: string | undefined
+        image: string
+        price: string
+        quantity?: number
+      }[]
+    >
+  >
 }
 
 const Landing: React.FC<ILandingProps> = ({ cartCount, setCartCount }) => {
