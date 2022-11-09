@@ -1,23 +1,24 @@
 import { useState } from 'react'
 
-interface ProductProps {
-  name: string
-  price: string
-  image: string
-  stars: string
-  setCartCount: React.Dispatch<React.SetStateAction<number>>
-}
-
-export function ProductCard({ image, name, price, setCartCount, stars }: ProductProps) {
-  const [buttonState, setButtonState] = useState('+')
-
-  function ChangeButtonState() {
-    if (buttonState === '+') {
-      setButtonState('-')
-      setCartCount((cartCount: number) => cartCount + 1)
+export function ProductCard({
+  id,
+  image,
+  name,
+  price,
+  setCartCount,
+  stars,
+}: ProductProps) {
+  function addToCart() {
+    const cart = JSON.parse(localStorage.getItem('cart') || '[]')
+    const product = cart.find((product: { id: string | undefined }) => product.id === id)
+    if (product) {
+      product.quantity += 1
+      localStorage.setItem('cart', JSON.stringify(cart))
+      setCartCount(cart)
     } else {
-      setButtonState('+')
-      setCartCount((cartCount: number) => cartCount - 1)
+      cart.push({ id, image, price, quantity: 1 })
+      localStorage.setItem('cart', JSON.stringify(cart))
+      setCartCount(cart)
     }
   }
 
@@ -39,10 +40,10 @@ export function ProductCard({ image, name, price, setCartCount, stars }: Product
           <img src={stars} alt="Rating" className=" pr-32" />
         </div>
         <button
-          onClick={() => ChangeButtonState()}
+          onClick={() => addToCart()}
           className="w-20 h-12 bg-purple rounded-full text-white font-openSans text-3xl mt-2 leading-[0px]"
         >
-          {buttonState}
+          +
         </button>
       </div>
     </a>

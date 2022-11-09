@@ -87,7 +87,7 @@ export default function Login() {
           Login
         </button>
         <a
-          className="text-left text-sm hover:underline -mt-4 "
+          className="text-left text-sm hover:underline hover:text-purple -mt-4 text-white"
           onClick={() => navigate('/cadastro')}
         >
           Não tem uma conta? Criar conta

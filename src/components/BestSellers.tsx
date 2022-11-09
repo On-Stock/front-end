@@ -11,11 +11,7 @@ import Stars3 from '../assets/stars3.svg'
 import Stars2 from '../assets/stars2.svg'
 import Stars1 from '../assets/stars1.svg'
 
-interface BestSellersProps {
-  setCartCount: React.Dispatch<React.SetStateAction<number>>
-}
-
-export function BestSellers({ setCartCount }: BestSellersProps) {
+export function BestSellers({ setCartCount }: SetCartCount) {
   return (
     <div className="mt-12 flex flex-col h-fit w-full">
       <h2 className="text-white text-4xl font-medium w-full text-center">
@@ -23,6 +19,7 @@ export function BestSellers({ setCartCount }: BestSellersProps) {
       </h2>
       <div className="flex flex-row gap-20 mt-10 w-full justify-center">
         <ProductCard
+          id="1"
           image={C920}
           name="Webcam C922 Logitech"
           price="350.99"
@@ -31,6 +28,7 @@ export function BestSellers({ setCartCount }: BestSellersProps) {
         />
 
         <ProductCard
+          id="2"
           image={Michyper}
           name="QuadCast HyperX"
           price="860.00"
@@ -39,6 +37,7 @@ export function BestSellers({ setCartCount }: BestSellersProps) {
         />
 
         <ProductCard
+          id="3"
           image={Brio}
           name="Webcam BRIO Logitech"
           price="1050.00"

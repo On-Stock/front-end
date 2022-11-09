@@ -6,12 +6,7 @@ import { Navbar } from '../components/Navbar'
 import Promo from '../assets/promo.png'
 import { About } from '../components/About'
 
-export interface ILandingProps {
-  cartCount: number
-  setCartCount: React.Dispatch<React.SetStateAction<number>>
-}
-
-const Landing: React.FC<ILandingProps> = ({ cartCount, setCartCount }) => {
+function Landing({ cartCount, setCartCount }: LandingProps) {
   return (
     <div className="max-w-[1344] mx-auto flex items-center flex-col">
       <Navbar cartCount={cartCount} />
