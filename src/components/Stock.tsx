@@ -11,19 +11,7 @@ import Stars3 from '../assets/stars3.svg'
 import Stars2 from '../assets/stars2.svg'
 import Stars1 from '../assets/stars1.svg'
 
-interface StockProps {
-  setCartCount: React.Dispatch<
-    React.SetStateAction<
-      {
-        id?: string | undefined
-        image: string
-        price: string
-      }[]
-    >
-  >
-}
-
-export function Stock({ setCartCount }: StockProps) {
+export function Stock({ setCartCount }: SetCartCount) {
   return (
     <div className="w-full flex px-10 mt-10 justify-between">
       <div className="flex flex-col border w-[70vw] border-purple mr-2 h-fit">

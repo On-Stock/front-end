@@ -1,24 +1,5 @@
 import { useState } from 'react'
 
-interface ProductProps {
-  id?: string
-  name: string
-  price: string
-  quantity?: number
-  image: string
-  stars: string
-  setCartCount: React.Dispatch<
-    React.SetStateAction<
-      {
-        id?: string | undefined
-        image: string
-        price: string
-        quantity?: number
-      }[]
-    >
-  >
-}
-
 export function ProductCard({
   id,
   image,

@@ -155,7 +155,7 @@ export default function Cadastro() {
           Fazer Cadastro
         </button>
         <a
-          className="text-left text-sm hover:underlin -mt-4 "
+          className="text-left text-sm hover:underlin -mt-4 hover:text-purple text-white hover:underline"
           onClick={() => navigate('/login')}
         >
           Já tem uma conta? Fazer login

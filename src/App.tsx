@@ -6,9 +6,12 @@ import Login from './pages/Login'
 import './main.css'
 import Cadastro from './pages/Cadastro'
 
-export interface IApp {}
+export interface IApp {
+  cartCount: number
+  setCartCount: SetCartCount
+}
 
-const App: React.FC<IApp> = props => {
+function App({ cartCount, setCartCount }: IApp) {
   //Inicializa o estado do carrinho
   const [cart, setCart] = useState<
     { id?: string; image: string; price: string; quantity?: number }[]

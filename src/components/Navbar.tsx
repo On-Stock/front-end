@@ -6,7 +6,6 @@ interface NavbarProps {
 
 export function Navbar({ cartCount }: NavbarProps) {
   const navigate = useNavigate()
-  
 
   return (
     <div className="bg-dark w-full h-24 flex flex-row align-middle items-center px-12 backdrop-blur-lg pt-4 sticky top-0 z-10">
@@ -18,35 +17,47 @@ export function Navbar({ cartCount }: NavbarProps) {
 
       <div className="flex flex-row justify-end gap-8 w-full">
         <button
-          onClick={() =>
+          onClick={() => {
             window.scrollTo({
               top: 0,
               behavior: 'smooth',
             })
-          }
+            navigate('/')
+          }}
           className="text-white text-[1vw] hover:text-purple font-openSans font-semibold focus:text-purple"
         >
           Home
         </button>
+
         <button
-          onClick={() =>
+          onClick={() => {
             window.scrollTo({
               top: window.innerHeight - 90,
               behavior: 'smooth',
             })
-          }
+            navigate('/')
+          }}
           className="text-white text-[1vw] hover:text-purple font-openSans font-semibold focus:text-purple"
         >
           Mais Vendidos
         </button>
         <button
-          onClick={() => navigate('/categorias')}
+          onClick={() => {
+            window.scrollTo({
+              top: 0,
+              behavior: 'smooth',
+            })
+            navigate('/categorias')
+          }}
           className="text-white text-[1vw] hover:text-purple font-openSans font-semibold focus:text-purple"
         >
           Categorias
         </button>
         <button
-          onClick={() => window.scrollTo(0, document.body.scrollHeight)}
+          onClick={() => {
+            navigate('/')
+            window.scrollTo(0, document.body.scrollHeight)
+          }}
           className="text-white text-[1vw] hover:text-purple font-openSans font-semibold focus:text-purple"
         >
           Sobre
@@ -55,20 +66,19 @@ export function Navbar({ cartCount }: NavbarProps) {
           Entre em Contato
         </button>
 
-
         {/* BOTOES */}
-            <button
-              onClick={() => navigate('/login')}
-              className=" text-white text-[1vw] border-2 border-purple py-1 px-6 hover:bg-purple font-openSans font-semibold"
-            >
-              Login
-            </button>
-            <button className=" text-white text-[1vw] bg-purple  px-6 -ml-4 hover:bg-purple/75 font-openSans font-semibold peer">
-              Carrinho
-            </button>
-            <span className=" text-white text-[1vw] border-2 border-purple py-1 px-4 -ml-8 font-openSans font-semibold peer-hover:border-purple/75">
-              {cartCount}
-            </span>
+        <button
+          onClick={() => navigate('/login')}
+          className=" text-white text-[1vw] border-2 border-purple py-1 px-6 hover:bg-purple font-openSans font-semibold"
+        >
+          Login
+        </button>
+        <button className=" text-white text-[1vw] bg-purple  px-6 -ml-4 hover:bg-purple/75 font-openSans font-semibold peer">
+          Carrinho
+        </button>
+        <span className=" text-white text-[1vw] border-2 border-purple py-1 px-4 -ml-8 font-openSans font-semibold peer-hover:border-purple/75">
+          {cartCount}
+        </span>
       </div>
     </div>
   )

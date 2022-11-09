@@ -11,20 +11,7 @@ import Stars3 from '../assets/stars3.svg'
 import Stars2 from '../assets/stars2.svg'
 import Stars1 from '../assets/stars1.svg'
 
-interface BestSellersProps {
-  setCartCount: React.Dispatch<
-    React.SetStateAction<
-      {
-        id?: string | undefined
-        image: string
-        price: string
-        quantity?: number
-      }[]
-    >
-  >
-}
-
-export function BestSellers({ setCartCount }: BestSellersProps) {
+export function BestSellers({ setCartCount }: SetCartCount) {
   return (
     <div className="mt-12 flex flex-col h-fit w-full">
       <h2 className="text-white text-4xl font-medium w-full text-center">
