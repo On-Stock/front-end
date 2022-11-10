@@ -1,6 +1,7 @@
 import { FormEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { BACKEND_URL } from '../utils/urlRequest'
+import api from '../services/api'
 
 function validate(formDataInputs: { [attr: string]: FormDataEntryValue }) {
   let isValid: boolean = true
