@@ -4,7 +4,7 @@ import { parseCookies } from 'nookies';
 const { 'dory.token': token } = parseCookies();
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_BACKEND_URL ?? 'http://localhost:3030',
+  baseURL: import.meta.env.VITE_BACKEND_URL ?? 'http://localhost:3000',
 });
 
 if (token) {

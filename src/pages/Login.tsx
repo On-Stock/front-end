@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { ChangeEvent, FormEvent, useState } from 'react'
 import { BACKEND_URL } from '../utils/urlRequest'
+import api from '../services/api'
 
 export default function Login() {
   const navigate = useNavigate()
@@ -14,25 +15,19 @@ export default function Login() {
     else setPasswordValue(value as string)
   }
 
-  function handleSendForm(event: FormEvent) {
+  async function handleSendForm(event: FormEvent) {
     event.preventDefault()
 
-    fetch(`${BACKEND_URL}/login`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        email: loginValue,
-        password: passwordValue,
-      }),
-    })
-      .then(response => {
-        console.log(response.json().then(data => console.log(data)))
-        alert('Login efetuado com sucesso!! Status: ' + response.status)
-      })
-      .catch(error => {
-        console.log(error)
-        alert('Houve um erro de login!! ' + error)
-      })
+    const data = { email: loginValue, password: passwordValue };
+
+    const response = await api.post('/login', data)
+
+    if (response.data.status === "success") {
+      console.log(response.data.token)
+    }
+    else {
+      alert('email ou senha incorretos')
+    }
   }
 
   return (

@@ -6,12 +6,8 @@ import Login from './pages/Login'
 import './main.css'
 import Cadastro from './pages/Cadastro'
 
-export interface IApp {
-  cartCount: number
-  setCartCount: SetCartCount
-}
 
-function App({ cartCount, setCartCount }: IApp) {
+function App() {
   //Inicializa o estado do carrinho
   const [cart, setCart] = useState<
     { id?: string; image: string; price: string; quantity?: number }[]
