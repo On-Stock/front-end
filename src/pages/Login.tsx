@@ -25,7 +25,10 @@ export default function Login() {
         password: passwordValue,
       }),
     })
-      .then(response => alert('Login efetuado com sucesso!! Status: ' + response.status))
+      .then(response => {
+        console.log(response.json().then(data => console.log(data)))
+        alert('Login efetuado com sucesso!! Status: ' + response.status)
+      })
       .catch(error => {
         console.log(error)
         alert('Houve um erro de login!! ' + error)
@@ -60,8 +63,8 @@ export default function Login() {
             id="login"
             value={loginValue}
             onChange={handleChange}
-            placeholder="Email ou Nickname"
-            className="clear-both  h-12 bg-transparent border-2 border-purple w-[100%] text-[1vw]  px-4 font-openSans font-semibold text-white"
+            placeholder="Email "
+            className="clear-both  h-12 bg-transparent border-2 border-purple w-[100%] text-base  px-4 font-openSans font-semibold text-white"
           />
         </div>
 
@@ -76,13 +79,13 @@ export default function Login() {
             value={passwordValue}
             onChange={handleChange}
             placeholder="Fulano123$"
-            className=" h-12 bg-transparent border-2 border-purple w-[100%] text-[1vw]  px-4 font-openSans font-semibold text-white"
+            className=" h-12 bg-transparent border-2 border-purple w-[100%] text-base  px-4 font-openSans font-semibold text-white"
           />
         </div>
 
         <button
           type="submit"
-          className=" text-white text-[1vw] border-2 border-purple py-1 px-6 hover:bg-purple font-openSans font-semibold"
+          className=" text-white text-base border-2 border-purple py-1 px-6 hover:bg-purple font-openSans font-semibold"
         >
           Login
         </button>
