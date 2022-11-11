@@ -36,7 +36,7 @@ export default function Cadastro() {
     // Object.keys(formDataInputs).forEach((chave)=>alert(`Nome da chave: ${chave}`) )
 
     if (validate(formDataInputs)) {
-      fetch(`${BACKEND_URL}/cadastro`, {
+      fetch(`${BACKEND_URL}/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
