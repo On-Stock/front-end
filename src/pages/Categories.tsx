@@ -2,20 +2,7 @@ import React from 'react'
 import { Navbar } from '../components/Navbar'
 import { Stock } from '../components/Stock'
 
-export interface ICategoriesProps {
-  cartCount: number
-  setCartCount: React.Dispatch<
-    React.SetStateAction<
-      {
-        id?: string | undefined
-        image: string
-        price: string
-      }[]
-    >
-  >
-}
-
-const Categories: React.FC<ICategoriesProps> = ({ cartCount, setCartCount }) => {
+const Categories: React.FC<CartAndSetCart> = ({ cartCount, setCartCount }) => {
   return (
     <div>
       <Navbar cartCount={cartCount} />

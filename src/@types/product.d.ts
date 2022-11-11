@@ -33,7 +33,7 @@ declare global {
     >
   }
 
-  interface LandingProps {
+  interface CartAndSetCart {
     cartCount: number
     setCartCount: React.Dispatch<
       React.SetStateAction<
