@@ -18,14 +18,13 @@ export default function Login() {
   async function handleSendForm(event: FormEvent) {
     event.preventDefault()
 
-    const data = { email: loginValue, password: passwordValue };
+    const data = { email: loginValue, password: passwordValue }
 
     const response = await api.post('/login', data)
 
-    if (response.data.status === "success") {
+    if (response.data.status === 'success') {
       console.log(response.data.token)
-    }
-    else {
+    } else {
       alert('email ou senha incorretos')
     }
   }
