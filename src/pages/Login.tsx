@@ -23,9 +23,13 @@ export default function Login() {
     const response = await api.post('/login', data)
 
     if (response.data.status === 'success') {
-      console.log(response.data.token)
+      localStorage.setItem('role', response.data.role)
+      localStorage.setItem('logged', response.data.logged)
+      navigate('/')
     } else {
       alert('email ou senha incorretos')
+      localStorage.removeItem('user')
+      localStorage.setItem('logged', 'no')
     }
   }
 

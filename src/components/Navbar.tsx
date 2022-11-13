@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
 interface NavbarProps {
@@ -6,6 +7,14 @@ interface NavbarProps {
 
 export function Navbar({ cartCount }: NavbarProps) {
   const navigate = useNavigate()
+
+  const [role, setRole] = useState(localStorage.getItem('role'))
+  const [logged, setLogged] = useState(localStorage.getItem('logged'))
+
+  function handleLogout() {
+    localStorage.clear()
+    navigate(0)
+  }
 
   return (
     <div className="bg-dark w-full h-24 flex flex-row align-middle items-center px-12 backdrop-blur-lg pt-4 sticky top-0 z-10">
@@ -67,12 +76,31 @@ export function Navbar({ cartCount }: NavbarProps) {
         </button>
 
         {/* BOTOES */}
-        <button
-          onClick={() => navigate('/login')}
-          className=" text-white text-[1vw] border-2 border-purple py-1 px-6 hover:bg-purple font-openSans font-semibold"
-        >
-          Login
-        </button>
+        {role == 'ADMIN' ? (
+          <button
+            onClick={() => navigate('/hubAdmin')}
+            className=" text-white text-[1vw] border-2 border-purple py-1 px-6 hover:bg-purple font-openSans font-semibold"
+          >
+            Hub Admin
+          </button>
+        ) : null}
+
+        {logged == 'yes' ? (
+          <button
+            onClick={() => handleLogout()}
+            className=" text-white text-[1vw] border-2 border-purple py-1 px-6 hover:bg-purple font-openSans font-semibold"
+          >
+            Logout
+          </button>
+        ) : (
+          <button
+            onClick={() => navigate('/login')}
+            className=" text-white text-[1vw] border-2 border-purple py-1 px-6 hover:bg-purple font-openSans font-semibold"
+          >
+            Login
+          </button>
+        )}
+
         <button className=" text-white text-[1vw] bg-purple  px-6 -ml-4 hover:bg-purple/75 font-openSans font-semibold peer">
           Carrinho
         </button>

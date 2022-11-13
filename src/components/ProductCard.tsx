@@ -24,17 +24,13 @@ export function ProductCard({
 
   return (
     <a className="w-[300px] h-[400px] bg-productDiv flex flex-col justify-center items-center px-6 py-10">
-      <img
-        src={image}
-        alt="Brio Webcam"
-        className="max-w-full bg-productBack h-full object-scale-down"
-      />
+      <img src={image} className="max-w-full bg-productBack h-full object-scale-down" />
       <p className="text-start text-paragraph font-medium text-lg mt-2 w-full ">{name}</p>
 
       <div className="flex items-center">
         <div className="flex flex-col">
-          <span className="font-medium text-lg text-purple text-start w-full  mt-2 mb-1">
-            R${price}
+          <span className="font-medium text-lg text-purple text-start w-full  mb-1">
+            R$ {price}
           </span>
 
           <img src={stars} alt="Rating" className=" pr-32" />

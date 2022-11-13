@@ -1,20 +1,19 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { CategoryConsult } from '../../components/HubAdmin/CategoryConsult'
 import { AiFillPlusSquare } from 'react-icons/ai'
-import { ProductConsult } from '../../components/HubAdmin/ProductConsult'
 
-export default function ConsultProducts() {
-  const [products, setProducts] = useState<[]>([])
+export default function ConsultCategories() {
+  const [categories, setCategories] = useState<[]>([])
 
   useEffect(() => {
-    axios.get('http://localhost:3000/getAllProducts').then(response => {
-      setProducts(response.data)
+    axios.get('http://localhost:3000/getCategories').then(response => {
+      setCategories(response.data)
     })
-  }, [products])
+  }, [categories])
 
   const navigate = useNavigate()
-
   return (
     <div>
       <a
@@ -25,16 +24,16 @@ export default function ConsultProducts() {
       </a>
       <div className="flex flex-col m-auto w-[500px]">
         <h2 className="text-white font-semibold text-4xl mt-24 bg-purple py-4 text-center relative">
-          Produtos
-          <button onClick={() => navigate('/hubAdmin/createProducts')}>
+          Categorias
+          <button onClick={() => navigate('/hubAdmin/createCategories')}>
             <AiFillPlusSquare className="text-white text-7xl hover:text-purple absolute top-0 -right-20" />
           </button>
         </h2>
 
-        {products.map((category: any) => (
-          <ProductConsult
+        {categories.map((category: any) => (
+          <CategoryConsult
             key={category.id}
-            productName={category.name}
+            categoryName={category.name}
             id={category.id}
           />
         ))}
