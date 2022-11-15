@@ -1,14 +1,14 @@
-import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { CategoryConsult } from '../../components/HubAdmin/CategoryConsult'
 import { AiFillPlusSquare } from 'react-icons/ai'
+import api from '../../services/api'
 
 export default function ConsultCategories() {
   const [categories, setCategories] = useState<[]>([])
 
   useEffect(() => {
-    axios.get('http://localhost:3000/getCategories').then(response => {
+    api.get('/getCategories').then(response => {
       setCategories(response.data)
     })
   }, [categories])

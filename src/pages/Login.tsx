@@ -3,6 +3,15 @@ import { ChangeEvent, FormEvent, useState } from 'react'
 import { BACKEND_URL } from '../utils/urlRequest'
 import api from '../services/api'
 
+interface TypeResponse {
+  data: {
+    status: string;
+    role: string;
+    logged: string;
+    token: string;
+  }
+}
+
 export default function Login() {
   const navigate = useNavigate()
   const [loginValue, setLoginValue] = useState<string>('')
@@ -20,7 +29,7 @@ export default function Login() {
 
     const data = { email: loginValue, password: passwordValue }
 
-    const response = await api.post('/login', data)
+    const response: TypeResponse = await api.post('/login', data)
 
     if (response.data.status === 'success') {
       localStorage.setItem('role', response.data.role)
