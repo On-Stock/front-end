@@ -2,20 +2,26 @@ import { useNavigate } from 'react-router-dom'
 import { ChangeEvent, FormEvent, useState } from 'react'
 import { BACKEND_URL } from '../utils/urlRequest'
 import api from '../services/api'
-
-interface TypeResponse {
-  data: {
-    status: string;
-    role: string;
-    logged: string;
-    token: string;
-  }
-}
+import { useAppContext } from '../context/hook'
+import { setSessionCookie } from '../utils/sessions'
 
 export default function Login() {
   const navigate = useNavigate()
   const [loginValue, setLoginValue] = useState<string>('')
   const [passwordValue, setPasswordValue] = useState<string>('')
+
+  const user = {
+    id: '',
+    name: '',
+    email: '',
+    login: '',
+    password: '',
+    address: '',
+    phone: '',
+    role: '',
+  }
+
+  const { state } = useAppContext()
 
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
     let { name, value } = event.target as HTMLInputElement
@@ -29,16 +35,26 @@ export default function Login() {
 
     const data = { email: loginValue, password: passwordValue }
 
-    const response: TypeResponse = await api.post('/login', data)
+    const response = await api.post('/login', data)
 
     if (response.data.status === 'success') {
-      localStorage.setItem('role', response.data.role)
-      localStorage.setItem('logged', response.data.logged)
+      const responseUser = response.data.user
+
+      user.id = responseUser.id
+      user.name = responseUser.name
+      user.email = responseUser.email
+      user.login = responseUser.login
+      user.password = responseUser.password
+      user.address = responseUser.address
+      user.phone = responseUser.phone
+      user.role = responseUser.role
+
+      state.user = user
+      setSessionCookie(JSON.stringify(user))
+
       navigate('/')
     } else {
       alert('email ou senha incorretos')
-      localStorage.removeItem('user')
-      localStorage.setItem('logged', 'no')
     }
   }
 

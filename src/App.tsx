@@ -12,6 +12,8 @@ import ConsultProducts from './pages/HubAdmin/ConsultProducts'
 import ConsultCategories from './pages/HubAdmin/ConsultCategories'
 import UpdateProduct from './pages/HubAdmin/UpdateProduct'
 import UpdateCategory from './pages/HubAdmin/UpdateCategory'
+import { useAppContext } from './context/hook'
+import { getSessionCookie } from './utils/sessions'
 
 function App() {
   //Inicializa o estado do carrinho
@@ -24,6 +26,9 @@ function App() {
     }
     return []
   })
+
+  const { state } = useAppContext()
+  state.user = getSessionCookie()
 
   function sumQuantityFromCart() {
     let sum = 0
