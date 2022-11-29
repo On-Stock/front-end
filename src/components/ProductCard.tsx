@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useAppContext } from '../context/hook'
 
 export function ProductCard({
   id,
@@ -22,6 +23,25 @@ export function ProductCard({
     }
   }
 
+  function removeFromCart() {
+    const cart = JSON.parse(localStorage.getItem('cart') || '[]')
+    const product = cart.find((product: { id: string | undefined }) => product.id === id)
+
+    if (product.quantity > 1) {
+      product.quantity -= 1
+      localStorage.setItem('cart', JSON.stringify(cart))
+      setCartCount(cart)
+    } else {
+      const newCart = cart.filter(
+        (product: { id: string | undefined }) => product.id !== id
+      )
+      localStorage.setItem('cart', JSON.stringify(newCart))
+      setCartCount(newCart)
+    }
+  }
+
+  const { state } = useAppContext()
+
   return (
     <a className="w-[300px] h-[400px] bg-productDiv flex flex-col justify-center items-center px-6 py-10">
       <img src={image} className="max-w-full bg-productBack h-full object-scale-down" />
@@ -35,9 +55,19 @@ export function ProductCard({
 
           <img src={stars} alt="Rating" className=" pr-32" />
         </div>
+
+        {state.page === 'cart' ? (
+          <button
+            onClick={() => removeFromCart()}
+            className="w-20 h-12 bg-purple rounded-full text-white font-openSans text-3xl -ml-10 mt-2 leading-[0px]"
+          >
+            -
+          </button>
+        ) : null}
+
         <button
           onClick={() => addToCart()}
-          className="w-20 h-12 bg-purple rounded-full text-white font-openSans text-3xl mt-2 leading-[0px]"
+          className="w-20 h-12 bg-purple rounded-full text-white font-openSans text-3xl ml-4 mt-2 leading-[0px]"
         >
           +
         </button>

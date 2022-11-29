@@ -11,6 +11,7 @@ export const INITIAL_STATE = {
     phone: "",
     role: "",
   },
+  page: "landing",
 }
 
 export const AppContext = createContext({ state: INITIAL_STATE });

@@ -14,6 +14,8 @@ import UpdateProduct from './pages/HubAdmin/UpdateProduct'
 import UpdateCategory from './pages/HubAdmin/UpdateCategory'
 import { useAppContext } from './context/hook'
 import { getSessionCookie } from './utils/sessions'
+import Cart from './pages/Cart'
+import Account from './pages/Account'
 
 function App() {
   //Inicializa o estado do carrinho
@@ -56,6 +58,11 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/cadastro" element={<Cadastro />} />
         <Route path="/hubAdmin" element={<HubAdmin />} />
+        <Route
+          path="/cart"
+          element={<Cart setCartCount={setCart} cartCount={sumQuantityFromCart()} />}
+        />
+        <Route path="/account" element={<Account />} />
 
         <Route path="/hubAdmin/consultProducts" element={<ConsultProducts />} />
         <Route path="/hubAdmin/createProducts" element={<CreateProduct />} />
