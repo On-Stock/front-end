@@ -1,6 +1,7 @@
 import React from "react";
 
 declare global {
+
   interface ProductProps {
     id?: string
     name: string

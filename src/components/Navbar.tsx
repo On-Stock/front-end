@@ -1,5 +1,7 @@
-import { useState } from 'react'
+import Cookies from 'js-cookie'
 import { Link, useNavigate } from 'react-router-dom'
+import { INITIAL_STATE } from '../context'
+import { useAppContext } from '../context/hook'
 
 interface NavbarProps {
   cartCount: number
@@ -8,11 +10,11 @@ interface NavbarProps {
 export function Navbar({ cartCount }: NavbarProps) {
   const navigate = useNavigate()
 
-  const [role, setRole] = useState(localStorage.getItem('role'))
-  const [logged, setLogged] = useState(localStorage.getItem('logged'))
+  const { state } = useAppContext()
 
   function handleLogout() {
-    localStorage.clear()
+    state.user = INITIAL_STATE.user
+    Cookies.remove('session')
     navigate(0)
   }
 
@@ -76,7 +78,7 @@ export function Navbar({ cartCount }: NavbarProps) {
         </button>
 
         {/* BOTOES */}
-        {role == 'ADMIN' ? (
+        {state.user.role == 'ADMIN' ? (
           <button
             onClick={() => navigate('/hubAdmin')}
             className=" text-white text-[1vw] border-2 border-purple py-1 px-6 hover:bg-purple font-openSans font-semibold"
@@ -85,7 +87,7 @@ export function Navbar({ cartCount }: NavbarProps) {
           </button>
         ) : null}
 
-        {logged == 'yes' ? (
+        {state.user.id != '' ? (
           <button
             onClick={() => handleLogout()}
             className=" text-white text-[1vw] border-2 border-purple py-1 px-6 hover:bg-purple font-openSans font-semibold"
