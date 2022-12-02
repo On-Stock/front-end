@@ -22,6 +22,7 @@ export default function Login() {
   }
 
   const { state } = useAppContext()
+  state.page = 'login'
 
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
     let { name, value } = event.target as HTMLInputElement

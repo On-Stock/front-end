@@ -2,6 +2,7 @@ import { FormEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { BACKEND_URL } from '../utils/urlRequest'
 import api from '../services/api'
+import { useAppContext } from '../context/hook'
 
 function validate(formDataInputs: { [attr: string]: FormDataEntryValue }) {
   let isValid: boolean = true
@@ -25,6 +26,9 @@ function validate(formDataInputs: { [attr: string]: FormDataEntryValue }) {
 }
 
 export default function Cadastro() {
+  const { state } = useAppContext()
+  state.page = 'register'
+
   const navigate = useNavigate()
 
   function handleSignupForm(event: FormEvent) {

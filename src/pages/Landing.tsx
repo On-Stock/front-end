@@ -5,8 +5,12 @@ import { Home } from '../components/Home'
 import { Navbar } from '../components/Navbar'
 import Promo from '../assets/promo.png'
 import { About } from '../components/About'
+import { useAppContext } from '../context/hook'
 
 function Landing({ cartCount, setCartCount }: CartAndSetCart) {
+  const { state } = useAppContext()
+  state.page = 'landing'
+
   return (
     <div className="max-w-[1344] mx-auto flex items-center flex-col">
       <Navbar cartCount={cartCount} />

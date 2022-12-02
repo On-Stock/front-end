@@ -15,7 +15,8 @@ export function Navbar({ cartCount }: NavbarProps) {
   function handleLogout() {
     state.user = INITIAL_STATE.user
     Cookies.remove('session')
-    navigate(0)
+    navigate('/')
+    window.location.reload()
   }
 
   return (
@@ -73,11 +74,25 @@ export function Navbar({ cartCount }: NavbarProps) {
         >
           Sobre
         </button>
-        <button className="text-white text-[1vw] hover:text-purple font-openSans mr-[4vw] font-semibold focus:text-purple">
-          Entre em Contato
-        </button>
 
         {/* BOTOES */}
+        {state.user.id != '' ? (
+          <>
+            <button
+              onClick={() => navigate('/account')}
+              className=" text-white text-[1vw] bg-purple  px-6 -ml-4 hover:bg-purple/75 font-openSans font-semibold"
+            >
+              Conta
+            </button>
+            <span
+              onClick={() => handleLogout()}
+              className=" text-white text-[1vw] border-2 border-purple hover:cursor-pointer hover:bg-purple py-1 px-4 -ml-8 font-openSans font-semibold peer-hover:border-purple/75"
+            >
+              X
+            </span>
+          </>
+        ) : null}
+
         {state.user.role == 'ADMIN' ? (
           <button
             onClick={() => navigate('/hubAdmin')}
@@ -87,14 +102,7 @@ export function Navbar({ cartCount }: NavbarProps) {
           </button>
         ) : null}
 
-        {state.user.id != '' ? (
-          <button
-            onClick={() => handleLogout()}
-            className=" text-white text-[1vw] border-2 border-purple py-1 px-6 hover:bg-purple font-openSans font-semibold"
-          >
-            Logout
-          </button>
-        ) : (
+        {state.user.id != '' ? null : (
           <button
             onClick={() => navigate('/login')}
             className=" text-white text-[1vw] border-2 border-purple py-1 px-6 hover:bg-purple font-openSans font-semibold"
@@ -103,7 +111,12 @@ export function Navbar({ cartCount }: NavbarProps) {
           </button>
         )}
 
-        <button className=" text-white text-[1vw] bg-purple  px-6 -ml-4 hover:bg-purple/75 font-openSans font-semibold peer">
+        <button
+          onClick={() => {
+            cartCount >= 1 ? navigate('/cart') : null
+          }}
+          className=" text-white text-[1vw] bg-purple  px-6 -ml-4 hover:bg-purple/75 font-openSans font-semibold peer"
+        >
           Carrinho
         </button>
         <span className=" text-white text-[1vw] border-2 border-purple py-1 px-4 -ml-8 font-openSans font-semibold peer-hover:border-purple/75">
