@@ -16,6 +16,7 @@ export function Navbar({ cartCount }: NavbarProps) {
     state.user = INITIAL_STATE.user
     Cookies.remove('session')
     navigate('/')
+    window.location.reload()
   }
 
   return (

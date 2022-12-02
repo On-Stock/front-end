@@ -62,7 +62,10 @@ function App() {
           path="/cart"
           element={<Cart setCartCount={setCart} cartCount={sumQuantityFromCart()} />}
         />
-        <Route path="/account" element={<Account />} />
+        <Route
+          path="/account"
+          element={<Account cartCount={sumQuantityFromCart()} setCartCount={setCart} />}
+        />
 
         <Route path="/hubAdmin/consultProducts" element={<ConsultProducts />} />
         <Route path="/hubAdmin/createProducts" element={<CreateProduct />} />

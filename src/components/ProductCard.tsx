@@ -9,9 +9,9 @@ export function ProductCard({
   setCartCount,
   stars,
 }: ProductProps) {
+  const cart = JSON.parse(localStorage.getItem('cart') || '[]')
+  const product = cart.find((product: { id: string | undefined }) => product.id === id)
   function addToCart() {
-    const cart = JSON.parse(localStorage.getItem('cart') || '[]')
-    const product = cart.find((product: { id: string | undefined }) => product.id === id)
     if (product) {
       product.quantity += 1
       localStorage.setItem('cart', JSON.stringify(cart))
@@ -24,9 +24,6 @@ export function ProductCard({
   }
 
   function removeFromCart() {
-    const cart = JSON.parse(localStorage.getItem('cart') || '[]')
-    const product = cart.find((product: { id: string | undefined }) => product.id === id)
-
     if (product.quantity > 1) {
       product.quantity -= 1
       localStorage.setItem('cart', JSON.stringify(cart))
@@ -54,6 +51,9 @@ export function ProductCard({
           </span>
 
           <img src={stars} alt="Rating" className=" pr-32" />
+          {product?.quantity >= 1 ? (
+            <span className="text-white font-openSans">Carrinho: {product.quantity}</span>
+          ) : null}
         </div>
 
         {state.page === 'cart' ? (
